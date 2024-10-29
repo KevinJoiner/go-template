@@ -1,6 +1,6 @@
 module github.com/DIMO-Network/app-name
 
-go 1.22.0
+go 1.23
 
 require (
 	github.com/DIMO-Network/shared v0.10.16

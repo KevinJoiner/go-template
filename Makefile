@@ -2,7 +2,8 @@
 
 PATHINSTBIN = $(abspath ./bin)
 export PATH := $(PATHINSTBIN):$(PATH)
-SHELL := env PATH=$(PATH) $(SHELL)
+OLDSHELL := $(SHELL)
+SHELL = env PATH=$(PATH) $(OLDSHELL)
 
 BIN_NAME					?= app-name
 DEFAULT_INSTALL_DIR			:= $(go env GOPATH)/$(PATHINSTBIN)
@@ -18,7 +19,7 @@ VERSION   := $(shell git describe --tags || echo "v0.0.0")
 VER_CUT   := $(shell echo $(VERSION) | cut -c2-)
 
 # Dependency versions
-GOLANGCI_VERSION   = v1.56.2
+GOLANGCI_VERSION   = latest
 
 
 help:
