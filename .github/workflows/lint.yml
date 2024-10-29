@@ -1,23 +1,20 @@
-name: golangci-lint
+name: lint
 on:
   pull_request:
     branches: [ '**' ]
-env:
-  GOPRIVATE: github.com/DIMO-Network
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
-  golangci:
-    runs-on: self-hosted
+  lint:
+    # Condition to skip merge commits
+    if: "!contains(github.event.head_commit.message, 'Merge pull request')"
+    runs-on: ubuntu-latest
 
     name: lint
     steps:
-      - name: Install Go
-        uses: actions/setup-go@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
-          go-version: 1.22
-
-      - name: Checkout code
-        uses: actions/checkout@v4
+          go-version-file: 'go.mod'
 
       - name: Install golangci-lint
         run: make tools-golangci-lint
