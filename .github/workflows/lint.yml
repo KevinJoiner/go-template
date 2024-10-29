@@ -1,8 +1,10 @@
 name: lint
 on:
   pull_request:
-    branches: [ '**' ]
-
+    branches: ["**"]
+  push:
+    branches:
+      - main
 jobs:
   lint:
     # Condition to skip merge commits

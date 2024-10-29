@@ -1,9 +1,10 @@
 name: test
-
 on:
   pull_request:
     branches: ["**"]
-
+  push:
+    branches:
+      - main
 jobs:
   test:
     # Condition to skip merge commits
